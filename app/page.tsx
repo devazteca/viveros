@@ -48,7 +48,7 @@ export default function Home() {
           Iniciar Sesión
         </button>
         <p className="mt-4 text-center text-sm text-gray-600">
-          ¿No tienes una cuenta? <a href="./pages/Hola" className="text-blue-500 hover:underline">Regístrate</a>
+          ¿No tienes una cuenta? <a href="#" className="text-blue-500 hover:underline">Regístrate</a>
         </p>
       </form>
     </div>
