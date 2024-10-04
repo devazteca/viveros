@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import clientPromise from '../../../../lib/mongo';
+import clientPromise from '../../../lib/mongo';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
