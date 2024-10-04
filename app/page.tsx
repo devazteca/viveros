@@ -1,5 +1,5 @@
 import Image from "next/image";
-import HumidityChart from "./pages/humidityChart";
+// import HumidityChart from "./pages/humidityChart";
 
 export default function Home() {
   return (

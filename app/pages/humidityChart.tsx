@@ -19,7 +19,7 @@ interface ChartData {
 }
 
 const HumidityChart: React.FC = () => {
-  const [data, setData] = useState<ChartData>({
+  const [data] = useState<ChartData>({
     labels: [],
     datasets: [],
   });
