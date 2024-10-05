@@ -78,7 +78,7 @@ const Page = () => {
                 Regístrate
                 </button>
                 <p className="mt-4 text-center text-sm text-gray-600">
-                    ¿Ya tienes una cuenta? <a href="./" className="text-blue-500 hover:underline">Inicia Sesión</a>
+                    ¿Ya tienes una cuenta? <a href="../" className="text-blue-500 hover:underline">Inicia Sesión</a>
                 </p>
             </form>
         </div>
