@@ -1,9 +1,38 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function Home() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+
+    const res = await fetch('login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (res.ok) {
+      router.push('./index');
+    } else {
+      const data = await res.json();
+      setError(data.error);
+    }
+  };
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <form className="bg-white p-8 rounded-lg justify-center justify-items-center justify-self-center shadow-md w-96 absolute">
+      <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg justify-center justify-items-center justify-self-center shadow-md w-96 absolute">
         <a href="https://www.facebook.com/cetis161tala/">
           <Image
             aria-hidden
@@ -15,6 +44,7 @@ export default function Home() {
           />
         </a>
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-500">Iniciar Sesión</h2>
+        {error && <p className="text-red-500 text-center">{error}</p>}
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700" htmlFor="email">
             Correo Electrónico
@@ -22,10 +52,10 @@ export default function Home() {
           <input
             type="email"
             id="email"
-            // value={email}
-            // onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-500"
+            className="text-black mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-500"
           />
         </div>
         <div className="mb-4">
@@ -35,10 +65,10 @@ export default function Home() {
           <input
             type="password"
             id="password"
-            // value={password}
-            // onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-500"
+            className="text-black mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-500"
           />
         </div>
         <button
@@ -48,7 +78,7 @@ export default function Home() {
           Iniciar Sesión
         </button>
         <p className="mt-4 text-center text-sm text-gray-600">
-          ¿No tienes una cuenta? <a href="#" className="text-blue-500 hover:underline">Regístrate</a>
+          ¿No tienes una cuenta? <a href="./register" className="text-blue-500 hover:underline">Regístrate</a>
         </p>
       </form>
     </div>
